@@ -9,7 +9,7 @@
             </choice>
         </element>
         <element label="Message" max_length="4000" name="message" type="string"/>
-        <element label="Source" max_length="40" name="source" type="string"/>
+        <element label="Source" max_length="100" name="source" type="string"/>
         <element label="Target Record" max_length="32" name="target_record" reference="task" type="reference"/>
         <index name="index">
             <element name="target_record"/>
