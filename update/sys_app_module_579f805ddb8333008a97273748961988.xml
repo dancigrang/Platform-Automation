@@ -5,8 +5,10 @@
         <assessment/>
         <content_page/>
         <device_type/>
-        <filter/>
-        <hint>Full list of all automation tasks</hint>
+        <filter table="x_105151_platform_automation_task">active=true^EQ<item endquery="false" field="active" goto="false" newquery="false" operator="=" or="false" value="true"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter>
+        <hint>List of all Open Automation Tasks</hint>
         <homepage/>
         <image/>
         <link_type>LIST</link_type>
@@ -14,28 +16,28 @@
         <mobile_title>Automation Tasks</mobile_title>
         <mobile_view_name>Mobile</mobile_view_name>
         <name>x_105151_platform_automation_task</name>
-        <order>300</order>
+        <order>100</order>
         <override_menu_roles>false</override_menu_roles>
         <query/>
         <report/>
         <roles>itil</roles>
         <sys_class_name>sys_app_module</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2019-07-30 20:23:30</sys_created_on>
+        <sys_created_on>2019-08-02 16:16:18</sys_created_on>
         <sys_domain>global</sys_domain>
         <sys_domain_path>/</sys_domain_path>
-        <sys_id>5b6ba158db0333008a972737489619eb</sys_id>
-        <sys_mod_count>3</sys_mod_count>
-        <sys_name>All Automation Tasks</sys_name>
+        <sys_id>579f805ddb8333008a97273748961988</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Open Automation Tasks</sys_name>
         <sys_overrides/>
         <sys_package display_value="Platform Automation" source="x_105151_platform">878961d4db0333008a9727374896197b</sys_package>
         <sys_policy/>
         <sys_scope display_value="Platform Automation">878961d4db0333008a9727374896197b</sys_scope>
-        <sys_update_name>sys_app_module_5b6ba158db0333008a972737489619eb</sys_update_name>
+        <sys_update_name>sys_app_module_579f805ddb8333008a97273748961988</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2019-08-02 16:19:09</sys_updated_on>
+        <sys_updated_on>2019-08-02 16:18:59</sys_updated_on>
         <timeline_page/>
-        <title>All Automation Tasks</title>
+        <title>Open Automation Tasks</title>
         <uncancelable>false</uncancelable>
         <view_name/>
         <window_name/>
