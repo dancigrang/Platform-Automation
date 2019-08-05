@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element extends="task" label="Automation Task" max_length="40" name="x_105151_platform_automation_task" type="collection">
+        <element label="Originating Task" max_length="32" name="originating_task" read_only="true" reference="task" type="reference"/>
+    </element>
+</database>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Automation Task Log" max_length="40" name="x_105151_platform_automation_task_log" type="collection">
+        <element choice="1" label="Level" max_length="40" name="level" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Debug" value="-1"/>
+                <element inactive_on_update="false" label="Error" value="2"/>
+                <element inactive_on_update="false" label="Information" value="0"/>
+                <element inactive_on_update="false" label="Warning" value="1"/>
+            </choice>
+        </element>
+        <element label="Message" max_length="4000" name="message" type="string"/>
+        <element label="Source" max_length="100" name="source" type="string"/>
+        <element label="Target Record" max_length="32" name="target_record" reference="task" type="reference"/>
+        <index name="index">
+            <element name="target_record"/>
+        </index>
+    </element>
+</database>

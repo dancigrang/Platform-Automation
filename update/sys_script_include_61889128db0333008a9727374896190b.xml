@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_105151_platform.AutomationLog</api_name>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>AutomationLog</name>
+        <script><![CDATA[var AutomationLog = Class.create();
+AutomationLog.prototype = {
+
+	// Constants
+	DEBUG: "-1",
+	INFO: "0",
+	WARN: "1",
+	ERROR: "2",
+
+	initialize: function(level) {
+		this.level = level;
+		this.current = current;
+		this.logger = new GlideRecord('x_105151_platform_automation_task_log');
+	},
+
+
+	debug: function(msg) {
+		if(this.level == 'DEBUG'){
+			this.logger.newRecord();
+			this.logger.level = this.DEBUG;
+			this.logger.message = msg;
+			this.logger.source = gs.getMessage();
+			this.logger.insert();
+		}
+	},
+
+	info: function(msg) {
+		if(this.level == "DEBUG" || this.level == "INFO"){
+			this.logger.newRecord();
+			this.logger.level = this.INFO;
+			this.logger.message = msg;
+			this.logger.source = gs.getMessage();
+			this.logger.insert();
+		}
+	},
+
+	warn: function(msg) {
+		if(this.level == "DEBUG" || this.level == "INFO" || this.level == "WARN"){
+			this.logger.newRecord();
+			this.logger.level = this.WARN;
+			this.logger.message = msg;
+			this.logger.source = gs.getMessage();
+			this.logger.insert();
+		}
+	},
+
+	error: function(msg) {
+		this.logger.newRecord();
+		this.logger.level = this.ERROR;
+		this.logger.message = msg;
+		this.logger.source = gs.getMessage();
+		this.logger.insert();
+	},
+	
+	turnOnDebugging: function() {
+		gs.setProperty("x_105151_platform.debug_level", "DEBUG");
+		gs.info("Debugging turned on");
+	},
+	
+	turnOffDebugging: function() {
+		gs.setProperty("x_105151_platform.debug_level", "ERROR");
+	},
+
+	type: 'AutomationLog'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-07-31 13:48:00</sys_created_on>
+        <sys_id>61889128db0333008a9727374896190b</sys_id>
+        <sys_mod_count>18</sys_mod_count>
+        <sys_name>AutomationLog</sys_name>
+        <sys_package display_value="Platform Automation" source="x_105151_platform">878961d4db0333008a9727374896197b</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Platform Automation">878961d4db0333008a9727374896197b</sys_scope>
+        <sys_update_name>sys_script_include_61889128db0333008a9727374896190b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-08-02 18:45:48</sys_updated_on>
+    </sys_script_include>
+</record_update>

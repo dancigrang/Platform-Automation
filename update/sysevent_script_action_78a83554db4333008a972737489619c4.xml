@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sysevent_script_action">
+    <sysevent_script_action action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition_script/>
+        <description/>
+        <event_name>x_105151_platform.automation.task</event_name>
+        <name>Check and Insert Automation Task</name>
+        <order>100</order>
+        <script><![CDATA[(function(current, event){
+	var foundTrigger = false;
+	
+	var trigger = new GlideRecord('x_105151_platform_trigger_configuration');
+	// Query for all Active Configurations
+	trigger.addQuery('active', true);
+	// Add a query to limit the search to the current task type
+	trigger.addQuery('table', current.getValue('sys_class_name'));
+	trigger.query();
+	
+	while(trigger.next()){
+		// Grab the filter field to use in a query on the target record
+		var filter = trigger.getValue('filter');
+		// Using the filter's table to query the data table
+		var recTable = new GlideRecord(trigger.getValue('table'));
+		// Add the configuration filter field as the filter for the class query
+		recTable.addEncodedQuery(filter);
+		recTable.query();
+		while(recTable.next()){
+			// Some Comparison to find a record that matches, using number for now
+			if(recTable.getValue('number') === current.getValue('number')){
+				// Found the trigger, break out of loops
+				foundTrigger = true;
+				// found a record --> create auto task
+				var auto = new GlideRecord('x_105151_platform_automation_task');
+				auto.newRecord();
+				/* Populating originating task to run the workflow against,
+				 * the workflow will be able to use the reference field when running
+				 * on the automation task
+				 */
+				auto.originating_task = current.getValue('sys_id');
+				// Just to give it some display value other than Number
+				auto.short_description = recTable.getValue('name');
+				// A reference field for workflow / reporting
+				auto.cmdb_ci = current.getValue('cmdb_ci');
+				var autoID = auto.insert();
+				
+				// Starting the listed workflow in the config
+				(new Workflow()).startFlow(recTable.getValue('workflow'), auto);
+			}
+			if(foundTrigger) break;
+		}
+		if(foundTrigger) break;
+	}
+	
+})(current, event);]]></script>
+        <synchronous>false</synchronous>
+        <sys_class_name>sysevent_script_action</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2019-07-30 21:32:45</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>78a83554db4333008a972737489619c4</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Check and Insert Automation Task</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Platform Automation" source="x_105151_platform">878961d4db0333008a9727374896197b</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Platform Automation">878961d4db0333008a9727374896197b</sys_scope>
+        <sys_update_name>sysevent_script_action_78a83554db4333008a972737489619c4</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2019-07-30 21:43:35</sys_updated_on>
+    </sysevent_script_action>
+</record_update>
